@@ -3,13 +3,6 @@ import time
 import numpy as np
 import matplotlib.pyplot as plt
 
-# User libraries
-import npUtils
-import pyUtils
-# import pyUtils_alter as pyUtils
-import cyUtils
-import pcUtils
-
 class Assembler(object):
     """
     This class provides the functions for
@@ -167,6 +160,7 @@ class FESolver(object):
         for key in kwargs:
             if key in self.def_opt:
                 setattr(self, key, kwargs[key])
+        self.KF.utils = self.utils
 
         # Check validity of thickness and loading data
         if len(self.thickness) == 1:
@@ -193,6 +187,13 @@ class FESolver(object):
         self.u = self.KF.solve()
 
 if __name__ == "__main__":
+    # User libraries
+    import npUtils
+    import pyUtils
+    # import pyUtils_alter as pyUtils
+    import cyUtils
+    import pcUtils
+
     # Parameters
     E  = 1e8
     L  = 1.0

@@ -1,1 +1,5 @@
 .ipynb_checkpoints/Formulation-checkpoint.ipynb
+beam/cyUtils.c
+.ipynb_checkpoints/Run-checkpoint.ipynb
+beam/build/temp.win-amd64-2.7/Release/pcUtils.lib
+beam/build/temp.win-amd64-2.7/Release/pcUtils.pyd.manifest

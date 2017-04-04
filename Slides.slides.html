@@ -11846,10 +11846,23 @@ a.anchor-link {
 </blockquote>
 </li>
 </ol>
+<p>To test PyPI-based Cython:</p>
+<ol>
+<li>Enter <code>test</code> folder and make.</li>
+<li>If correct, you will see<blockquote><p><code>My answer is 42!</code></p>
+</blockquote>
+</li>
+</ol>
 <h3 id="Using-Anaconda-(Preferred-for-Windows)">Using Anaconda (Preferred for Windows)<a class="anchor-link" href="#Using-Anaconda-(Preferred-for-Windows)">&#182;</a></h3><ol>
 <li>Download the Anaconda package [Python 2.7 64-bit] (<a href="https://www.continuum.io/downloads">https://www.continuum.io/downloads</a>)</li>
 <li>Download the Microsoft Visual C++ Compiler for Python (<a href="https://www.microsoft.com/en-us/download/details.aspx?id=44266">https://www.microsoft.com/en-us/download/details.aspx?id=44266</a>)</li>
-<li>Open the Test_Cython.ipynb to check if Cython works.</li>
+</ol>
+<p>To test Anaconda:</p>
+<ol>
+<li>Open and run the file ./test/Test_Cython.ipynb.</li>
+<li>If correct, you will see<blockquote><p><code>My answer is 42!</code></p>
+</blockquote>
+</li>
 </ol>
 
 </div>
@@ -11869,7 +11882,7 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Theano/Abaqus/SU2/...---Best-of-both-worlds">Theano/Abaqus/SU2/... - Best of both worlds<a class="anchor-link" href="#Theano/Abaqus/SU2/...---Best-of-both-worlds">&#182;</a></h3><p>Combining flexibility of Python and efficiency of other languages.</p>
+<h3 id="TensorFlow---Best-of-both-worlds">TensorFlow - Best of both worlds<a class="anchor-link" href="#TensorFlow---Best-of-both-worlds">&#182;</a></h3><p>Combining flexibility of Python and efficiency of other languages.</p>
 <p>Access existing code from legacy, low-level or high-performance libraries and applications.</p>
 
 </div>
@@ -11880,7 +11893,8 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="OpenRAVE---Breaking-performance-bottleneck">OpenRAVE - Breaking performance bottleneck<a class="anchor-link" href="#OpenRAVE---Breaking-performance-bottleneck">&#182;</a></h3><p>Using C extension to accelerate the critical part of a Python code.</p>
+<h3 id="OpenRAVE---Breaking-performance-bottleneck">OpenRAVE - Breaking performance bottleneck<a class="anchor-link" href="#OpenRAVE---Breaking-performance-bottleneck">&#182;</a></h3><p>Using C/C++ extension to accelerate the critical part of a Python code.</p>
+<p>[img: results]</p>
 
 </div>
 </div>
@@ -11891,6 +11905,7 @@ a.anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Fluid-Structural-Thermal-Interaction---1+1+1&gt;3">Fluid-Structural-Thermal-Interaction - 1+1+1&gt;3<a class="anchor-link" href="#Fluid-Structural-Thermal-Interaction---1+1+1&gt;3">&#182;</a></h3><p>Python as a glue language</p>
+<p>[gif: results]</p>
 
 </div>
 </div>
@@ -11900,7 +11915,14 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Outline-for-today">Outline for today<a class="anchor-link" href="#Outline-for-today">&#182;</a></h2><h3 id="Introduction-to-Cython">Introduction to Cython<a class="anchor-link" href="#Introduction-to-Cython">&#182;</a></h3><h3 id="A-hands-on-example">A hands-on example<a class="anchor-link" href="#A-hands-on-example">&#182;</a></h3><h3 id="Mechanisms-for-acceleration">Mechanisms for acceleration<a class="anchor-link" href="#Mechanisms-for-acceleration">&#182;</a></h3><h3 id="A-practical-example:-Structural-optimization">A practical example: Structural optimization<a class="anchor-link" href="#A-practical-example:-Structural-optimization">&#182;</a></h3><h3 id="Concluding-remarks">Concluding remarks<a class="anchor-link" href="#Concluding-remarks">&#182;</a></h3>
+<h2 id="Outline-for-today">Outline for today<a class="anchor-link" href="#Outline-for-today">&#182;</a></h2><ol>
+<li>Introducing Cython</li>
+<li>A hands-on example</li>
+<li>Mechanisms behind Cython</li>
+<li>A practical example: Structural optimization</li>
+<li>Concluding remarks</li>
+</ol>
+
 </div>
 </div>
 </div></section></section><section><section>
@@ -11912,13 +11934,13 @@ a.anchor-link {
 <h2 id="Cython:-C-Extensions-for-Python">Cython: C-Extensions for Python<a class="anchor-link" href="#Cython:-C-Extensions-for-Python">&#182;</a></h2><h3 id="Nearly-automatic-conversion-from-Python-to-C">Nearly-automatic conversion from Python to C<a class="anchor-link" href="#Nearly-automatic-conversion-from-Python-to-C">&#182;</a></h3><h3 id="Native-integration-with-C/C++-code">Native integration with C/C++ code<a class="anchor-link" href="#Native-integration-with-C/C++-code">&#182;</a></h3>
 </div>
 </div>
-</div></section></section><section><section>
+</div></section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Python: .py -(CPython Compiler)- byte code/.pyc -(CPython Interpreter)- Machine code</p>
+<p>Python: <strong>.py</strong> -(CPython Compiler)- <strong>byte code/.pyc</strong> -(CPython Interpreter)- <strong>Machine code</strong></p>
 
 </div>
 </div>
@@ -11928,7 +11950,7 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Cython: .pyx -(Cython)- .c -(C Compiler)- Machine code</p>
+<p>Cython: <strong>.pyx</strong> -(Cython)- <strong>.c</strong> -(C Compiler)- <strong>Machine code</strong></p>
 
 </div>
 </div>
@@ -11938,7 +11960,7 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>C: .c -(C Compiler)- Machine Code</p>
+<p>C: <strong>.c</strong> -(C Compiler)- <strong>Machine Code</strong></p>
 
 </div>
 </div>
@@ -11952,20 +11974,177 @@ a.anchor-link {
 
 </div>
 </div>
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span> 
-</pre></div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="A-Hands-on-Example">A Hands-on Example<a class="anchor-link" href="#A-Hands-on-Example">&#182;</a></h2><h3 id="Problem">Problem<a class="anchor-link" href="#Problem">&#182;</a></h3><ul>
+<li>Input: $N$</li>
+<li>Goal: Find the first $N$ prime numbers</li>
+</ul>
 
 </div>
 </div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's switch to the first example.</p>
+<ul>
+<li>Anaconda user: example_1/example_1.ipynb</li>
+<li>PyPI user: example_1/example_1.py</li>
+</ul>
 
-</div></div></section></section>
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Recap">Recap<a class="anchor-link" href="#Recap">&#182;</a></h3><ul>
+<li>2x faster by doing nothing</li>
+<li>20x faster by adding some C types (A few lines!)</li>
+</ul>
+
+</div>
+</div>
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="The-Mechanisms-Behind-Cython">The Mechanisms Behind Cython<a class="anchor-link" href="#The-Mechanisms-Behind-Cython">&#182;</a></h2>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="PyObject-v.s.-Raw-buffer">PyObject v.s. Raw buffer<a class="anchor-link" href="#PyObject-v.s.-Raw-buffer">&#182;</a></h3><p>[img: loop in python]</p>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>[img: loop in c]</p>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-Global-Interpretation-Lock">The Global Interpretation Lock<a class="anchor-link" href="#The-Global-Interpretation-Lock">&#182;</a></h3><p>[img: GIL]</p>
+
+</div>
+</div>
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="A-Practical-Example---Part-I">A Practical Example - Part I<a class="anchor-link" href="#A-Practical-Example---Part-I">&#182;</a></h2><h3 id="Problem">Problem<a class="anchor-link" href="#Problem">&#182;</a></h3><ul>
+<li>Input: Distribution of beam thickness $h(x)$ and transverse loading $p(x)$.</li>
+<li>Goal: Find the beam deflection</li>
+</ul>
+<p>[img: A beam with deflection]</p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Approach---Finite-element">Approach - Finite element<a class="anchor-link" href="#Approach---Finite-element">&#182;</a></h3><h4 id="The-beam-element">The beam element<a class="anchor-link" href="#The-beam-element">&#182;</a></h4>$$
+\begin{bmatrix}
+K_{11} & K_{12} & K_{13} & K_{14} \\
+K_{21} & K_{22} & K_{23} & K_{24} \\
+K_{31} & K_{32} & K_{33} & K_{34} \\
+K_{41} & K_{42} & K_{43} & K_{44}
+\end{bmatrix}
+\begin{bmatrix}
+w_1 \\ \phi_1 \\ w_2 \\ \phi_2
+\end{bmatrix}=
+\begin{bmatrix}
+F_1 \\ M_1 \\ F_2 \\ M_2
+\end{bmatrix}
+$$<p>[img: A beam element]</p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Assembling-the-global-matrix">Assembling the global matrix<a class="anchor-link" href="#Assembling-the-global-matrix">&#182;</a></h4><p>[img: The mesh of the beam]</p>
+<p>[img: The shape of global matrix]</p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Solving-the-linear-system">Solving the linear system<a class="anchor-link" href="#Solving-the-linear-system">&#182;</a></h4>$$
+\mathbf{K}\mathbf{x} = \mathbf{F}
+$$<p>where $\mathbf{K}$ is <em>symmetric</em> and <em>banded</em>.</p>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li>Cholesky Decomposition:
+$$\mathbf{K}=\mathbf{L}\mathbf{L}^T$$</li>
+<li>First back substitution:
+$$\mathbf{L}\mathbf{y} = \mathbf{F}$$</li>
+<li>Second back substitution:
+$$\mathbf{L}^T\mathbf{x} = \mathbf{y}$$</li>
+</ol>
+
+</div>
+</div>
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Implementation">Implementation<a class="anchor-link" href="#Implementation">&#182;</a></h3><p>Let's switch to the code</p>
+<ul>
+<li>Anaconda user: example_2/example_2.ipynb</li>
+<li>PyPI user: example_2/example_2.py</li>
+</ul>
+
+</div>
+</div>
+</div></section></section>
 </div>
 </div>
 
